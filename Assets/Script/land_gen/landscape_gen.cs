@@ -9,6 +9,7 @@ public class landscape_gen : MonoBehaviour
     public int dimension;
     public int resolution;
 
+
     private Vector3[] p_vertices;
     private Vector3[] p_normals;
     private int[] p_triangles;
