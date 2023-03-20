@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public void Set_information(landscape_gen landscape)
     {
         dimension_txt.text = landscape.dimension.ToString();
-        resolution_txt.text = landscape.resolution.ToString();
+        resolution_txt.text = landscape.GetResolution().ToString();
         triangles_txt.text = landscape.GetNbTriangles().ToString();
         vertices_txt.text = landscape.GetNbVertices().ToString();
     }

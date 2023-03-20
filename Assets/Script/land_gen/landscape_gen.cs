@@ -87,8 +87,13 @@ public class landscape_gen : MonoBehaviour
     public void deformation(int point_milieu)
     {
 
-        GameObject.FindObjectOfType<Info>().Set_information(this);
+        GameObject.FindObjectOfType<GameManager>().Set_information(this);
     }
 
+    public int GetNbTriangles() { return p_triangles.Length/3; }
+
+    public int GetNbVertices() { return p_vertices.Length; }
+
+    public int GetResolution() { return resolution; }
 
 } 
