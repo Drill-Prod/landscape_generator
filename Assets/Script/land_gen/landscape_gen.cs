@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class landscape_gen : MonoBehaviour
 {
+    
     public int dimension;
     public int resolution;
 
+    private int nb_triangles;
+    private int nb_vertices;
 
     private Vector3[] p_vertices;
     private Vector3[] p_normals;
@@ -77,11 +80,15 @@ public class landscape_gen : MonoBehaviour
         p_mesh.vertices = p_vertices;
         p_mesh.triangles = p_triangles;
         GetComponent<MeshFilter>().mesh = p_mesh;
+
+        nb_triangles = p_triangles.Length / 3;
+        nb_vertices = p_vertices.Length;
+
+        GameObject.FindObjectOfType<SetInfo>().Set_information();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int GetNbTriangles() { return nb_triangles; }
+
+    public int GetNbVertices() { return nb_vertices; }
 }

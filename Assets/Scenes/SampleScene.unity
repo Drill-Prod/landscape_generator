@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 336727778}
   - component: {fileID: 336727777}
   - component: {fileID: 336727776}
+  - component: {fileID: 336727779}
   m_Layer: 5
   m_Name: information
   m_TagString: Untagged
@@ -299,6 +300,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336727774}
   m_CullTransparentMesh: 1
+--- !u!114 &336727779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336727774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2af2894bfae2b14c94be8566c06c713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimension_txt: {fileID: 1120040678}
+  resolution_txt: {fileID: 859888771}
+  triangles_txt: {fileID: 1247463969}
+  vertices_txt: {fileID: 1524050295}
 --- !u!1 &476244872
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +767,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: none
+  m_Text: Calcule...
 --- !u!222 &859888772
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -930,7 +947,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: none
+  m_Text: Calcule...
 --- !u!222 &1120040679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1170,7 +1187,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: none
+  m_Text: Calcule...
 --- !u!222 &1247463970
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1638,7 +1655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: none
+  m_Text: Calcule...
 --- !u!222 &1524050296
 CanvasRenderer:
   m_ObjectHideFlags: 0
