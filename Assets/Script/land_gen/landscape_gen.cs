@@ -6,14 +6,11 @@ using UnityEngine;
 
 public class landscape_gen : MonoBehaviour
 {
-    
     public int dimension;
-    public int resolution;
-
-    private int nb_triangles;
-    private int nb_vertices;
+    public static int resolution;
 
     private Vector3[] p_vertices;
+    private Point[] p_points;
     private Vector3[] p_normals;
     private int[] p_triangles;
     private Mesh p_mesh;
@@ -22,12 +19,11 @@ public class landscape_gen : MonoBehaviour
     float z = 0;
     int cpt = 0;
 
-    public static landscape_gen land;
-
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        p_points = new Point[resolution * resolution];
         p_mesh = new Mesh();
         p_mesh.Clear();
         p_mesh.name = "landscape";
@@ -43,7 +39,7 @@ public class landscape_gen : MonoBehaviour
         {
             for (int j = 0; j < resolution; j++)
             {
-                p_vertices[cpt] = new Vector3(x, 0, z);  
+                p_vertices[cpt] = new Vector3(x, 0, z);
                 print(p_vertices[cpt]);
                 cpt++;
                 x += ecart;
@@ -57,9 +53,9 @@ public class landscape_gen : MonoBehaviour
         int z_disp, leftDown, leftUp, rightDown, rightUp = 0;
         int cpt_triangles = 0;
 
-        for (int z_boucle = 0; z_boucle < resolution -1; z_boucle++)
+        for (int z_boucle = 0; z_boucle < resolution - 1; z_boucle++)
         {
-            for (int x_boucle = 0; x_boucle < resolution -1; x_boucle++)
+            for (int x_boucle = 0; x_boucle < resolution - 1; x_boucle++)
             {
                 z_disp = resolution * z_boucle;
                 leftDown = x_boucle + z_disp;
@@ -74,22 +70,24 @@ public class landscape_gen : MonoBehaviour
                 p_triangles[cpt_triangles + 4] = rightDown;
                 p_triangles[cpt_triangles + 5] = leftUp;
 
+                //-- calcul des voisins
+                int[] voisin_temp = { leftDown + resolution, leftDown++, leftDown - resolution, leftDown-- };
+                p_points[leftDown] = new Point(leftDown, voisin_temp);
+
                 cpt_triangles += 6;
             }
         }
 
-
         p_mesh.vertices = p_vertices;
         p_mesh.triangles = p_triangles;
         GetComponent<MeshFilter>().mesh = p_mesh;
-
-        nb_triangles = p_triangles.Length / 3;
-        nb_vertices = p_vertices.Length;
-
-        GameObject.FindObjectOfType<Info>().Set_information(this);
+        MeshCollider.Instantiate(p_mesh);
     }
 
-    public int GetNbTriangles() { return nb_triangles; }
+    public void deformation(int point_milieu)
+    {
 
-    public int GetNbVertices() { return nb_vertices; }
-}
+    }
+
+
+} 
