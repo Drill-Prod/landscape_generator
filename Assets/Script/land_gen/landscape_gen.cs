@@ -86,7 +86,7 @@ public class landscape_gen : MonoBehaviour
         nb_triangles = p_triangles.Length / 3;
         nb_vertices = p_vertices.Length;
 
-        GameObject.FindObjectOfType<Info>().Set_information(this);
+        GameObject.FindObjectOfType<GameManager>().Set_information(this);
     }
 
     public int GetNbTriangles() { return nb_triangles; }
