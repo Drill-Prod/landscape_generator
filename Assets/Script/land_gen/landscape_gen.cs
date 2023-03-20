@@ -22,9 +22,11 @@ public class landscape_gen : MonoBehaviour
     float z = 0;
     int cpt = 0;
 
+    public static landscape_gen land;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         p_mesh = new Mesh();
         p_mesh.Clear();
@@ -84,8 +86,7 @@ public class landscape_gen : MonoBehaviour
         nb_triangles = p_triangles.Length / 3;
         nb_vertices = p_vertices.Length;
 
-        GameObject.FindObjectOfType<SetInfo>().Set_information();
-
+        GameObject.FindObjectOfType<Info>().Set_information(this);
     }
 
     public int GetNbTriangles() { return nb_triangles; }

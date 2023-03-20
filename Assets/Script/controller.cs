@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class controller : MonoBehaviour
 {
-    public float moveSpeed = 100f;
+    public float moveSpeed = 150f;
     public float turnSpeed = 400f;
     public float zoomSpeed = 100f;
 
@@ -12,12 +12,7 @@ public class controller : MonoBehaviour
     private float rotationX = 0f;
     private float rotationY = 0f;
 
-    landscape_gen landscape;
-
-    private void Start()
-    {
-        landscape = GameObject.FindObjectOfType<landscape_gen>();
-    }
+    public landscape_gen landscape;
 
     void Update()
     {
@@ -40,8 +35,8 @@ public class controller : MonoBehaviour
             Cursor.visible = true;
         }
 
-        if (Input.GetKey(KeyCode.A)) { }
-        if (Input.GetKey(KeyCode.E)) { }
+        if (Input.GetKey(KeyCode.A)) { landscape.transform.Rotate(0, turnSpeed * Time.deltaTime, 0); }
+        if (Input.GetKey(KeyCode.E)) { landscape.transform.Rotate(0, -turnSpeed * Time.deltaTime, 0); }
 
         // Zoom camera in/out using scroll wheel
         transform.position += transform.forward * Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
