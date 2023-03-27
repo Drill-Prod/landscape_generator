@@ -7,7 +7,7 @@ using UnityEngine;
 public class landscape_gen : MonoBehaviour
 {
     public int dimension;
-    public static int resolution;
+    public int resolution;
 
     private Vector3[] p_vertices;
     private Point[] p_points;
@@ -72,7 +72,7 @@ public class landscape_gen : MonoBehaviour
 
                 //-- calcul des voisins
                 int[] voisin_temp = { leftDown + resolution, leftDown++, leftDown - resolution, leftDown-- };
-                p_points[leftDown] = new Point(leftDown, voisin_temp);
+                p_points[leftDown] = new Point(leftDown, voisin_temp, this);
 
                 cpt_triangles += 6;
             }
@@ -81,6 +81,8 @@ public class landscape_gen : MonoBehaviour
         p_mesh.vertices = p_vertices;
         p_mesh.triangles = p_triangles;
         GetComponent<MeshFilter>().mesh = p_mesh;
+        GetComponent<MeshCollider>().mesh = p_mesh;
+
         MeshCollider.Instantiate(p_mesh);
     }
 

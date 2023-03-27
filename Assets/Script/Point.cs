@@ -8,13 +8,13 @@ public class Point : MonoBehaviour
 
     int[] voisin;
 
-    public Point(int id, int[] voisin)
+    public Point(int id, int[] voisin, landscape_gen lg)
     {
         this.id = id;
         this.voisin = voisin;
         for(int i = 0; i < voisin.Length; i++)
         {
-            if(voisin[i] < 0 || voisin[i] > landscape_gen.resolution )
+            if(voisin[i] < 0 || voisin[i] > lg.resolution )
             {
                 voisin[i] = -1;
             }
