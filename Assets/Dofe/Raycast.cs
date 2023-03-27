@@ -23,6 +23,7 @@ public class Raycast : MonoBehaviour
     void CheckForColliders() {
         if (Physics.Raycast(ray, out RaycastHit hit)) {
             Debug.Log(hit.collider.gameObject.name + " a était toucher !!");
+            Debug.Log(hit.point);
         }
     }
 }

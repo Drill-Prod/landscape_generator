@@ -43,6 +43,11 @@ public class landscape_gen : MonoBehaviour
                 print(p_vertices[cpt]);
                 cpt++;
                 x += ecart;
+
+                //-- calcul des voisins
+                int[] voisin_temp = {i + resolution, i + 1, i - resolution , i - 1};
+                p_points[i] = new Point(i, voisin_temp, this);
+
             }
             x = 0;
             z += ecart;
@@ -70,9 +75,6 @@ public class landscape_gen : MonoBehaviour
                 p_triangles[cpt_triangles + 4] = rightDown;
                 p_triangles[cpt_triangles + 5] = leftUp;
 
-                //-- calcul des voisins
-                int[] voisin_temp = { leftDown + resolution, leftDown++, leftDown - resolution, leftDown-- };
-                p_points[leftDown] = new Point(leftDown, voisin_temp, this);
 
                 cpt_triangles += 6;
             }
@@ -81,7 +83,7 @@ public class landscape_gen : MonoBehaviour
         p_mesh.vertices = p_vertices;
         p_mesh.triangles = p_triangles;
         GetComponent<MeshFilter>().mesh = p_mesh;
-        GetComponent<MeshCollider>().mesh = p_mesh;
+        GetComponent<MeshCollider>().sharedMesh = p_mesh;
 
         MeshCollider.Instantiate(p_mesh);
     }
@@ -97,5 +99,27 @@ public class landscape_gen : MonoBehaviour
     public int GetNbVertices() { return p_vertices.Length; }
 
     public int GetResolution() { return resolution; }
+
+    public int[] GetVerticeIndexFromTriangle(int index) {
+        return new[] { 
+            p_triangles[index * 3], 
+            p_triangles[index * 3 + 1], 
+            p_triangles[index * 3 + 2] 
+        };
+    }
+
+    //public int GetTriangleNearestVerticeIndex(int index, Transform comp_pos) {
+    //    int[] ver_index = GetVerticeIndexFromTriangle(index);
+    //    
+    //    int result = ver_index[0];
+    //    int ressult_dist = Vector3.Distance()
+    //    if () {
+    //
+    //    }
+    //
+    //    if () {
+    //
+    //    }
+    //}
 
 } 
