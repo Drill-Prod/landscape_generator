@@ -14,7 +14,7 @@ public class Point : MonoBehaviour
         this.voisin = voisin;
         for(int i = 0; i < voisin.Length; i++)
         {
-            if(voisin[i] < 0 || voisin[i] > landscape_gen.resolution )
+            if(voisin[i] < 0 )
             {
                 voisin[i] = -1;
             }

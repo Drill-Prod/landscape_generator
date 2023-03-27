@@ -7,7 +7,7 @@ using UnityEngine;
 public class landscape_gen : MonoBehaviour
 {
     public int dimension;
-    public static int resolution;
+    public int resolution;
 
     private Vector3[] p_vertices;
     private Point[] p_points;

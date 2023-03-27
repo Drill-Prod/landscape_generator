@@ -16,6 +16,10 @@ public class controller : MonoBehaviour
 
     public landscape_gen landscape;
 
+    public GameManager manager;
+
+    private bool visible=false;
+
     private void Start()
     {
         landscape= GameObject.FindObjectOfType<landscape_gen>();
@@ -23,7 +27,28 @@ public class controller : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (GameManager.Instance.useMove)
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                // Move camera forward/backward and strafe left/right
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
+                transform.position += transform.TransformDirection(moveDirection) * moveSpeed * Time.deltaTime;
+
+                // Rotate camera left/right (yaw) and up/down (pitch)
+                rotationX += Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
+                rotationY += Input.GetAxis("Mouse Y") * turnSpeed * Time.deltaTime;
+                rotationY = Mathf.Clamp(rotationY, -90f, 90f); // Prevent camera from flipping upside-down
+                transform.rotation = Quaternion.Euler(-rotationY, rotationX, 0f);
+                UnityEngine.Cursor.visible = false;
+            }
+
+            else
+            {
+                UnityEngine.Cursor.visible = true;
+            }
+        }
+        else if (GameManager.Instance.usePath)
         {
             // Move camera forward/backward and strafe left/right
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
@@ -34,9 +59,14 @@ public class controller : MonoBehaviour
             rotationY += Input.GetAxis("Mouse Y") * turnSpeed * Time.deltaTime;
             rotationY = Mathf.Clamp(rotationY, -90f, 90f); // Prevent camera from flipping upside-down
             transform.rotation = Quaternion.Euler(-rotationY, rotationX, 0f);
-            UnityEngine.Cursor.visible = false;
-        }
+            if(visible)
+                UnityEngine.Cursor.visible = true;
+            else
+                UnityEngine.Cursor.visible = false;
 
+            if(Input.GetKey(KeyCode.Escape)) { GameManager.Instance.Moving(); }
+
+        }
         else
         {
             UnityEngine.Cursor.visible = true;
