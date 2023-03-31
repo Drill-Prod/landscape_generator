@@ -24,6 +24,8 @@ public class Raycast : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit)) {
             Debug.Log(hit.collider.gameObject.name + " a était toucher !!");
             Debug.Log(hit.point);
+            Debug.Log(hit.triangleIndex);
+            Debug.Log(hit.collider.gameObject.FindObjectOfType<landscape_gen>().GetTriangleNearestVerticeIndex(hit.triangleIndex, hit.point));
         }
     }
 }

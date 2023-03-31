@@ -108,18 +108,27 @@ public class landscape_gen : MonoBehaviour
         };
     }
 
-    //public int GetTriangleNearestVerticeIndex(int index, Transform comp_pos) {
-    //    int[] ver_index = GetVerticeIndexFromTriangle(index);
-    //    
-    //    int result = ver_index[0];
-    //    int ressult_dist = Vector3.Distance()
-    //    if () {
-    //
-    //    }
-    //
-    //    if () {
-    //
-    //    }
-    //}
+    public int GetTriangleNearestVerticeIndex(int index, Vector3 comp_pos) {
+        int[] ver_index = GetVerticeIndexFromTriangle(index);
+        
+        int result = ver_index[0];
+        float result_dist = Vector3.Distance(p_vertices[result], comp_pos);
+
+        int tmp_index = ver_index[1];
+        float tmp_dist = Vector3.Distance(p_vertices[tmp_index], comp_pos);
+        if (result_dist > tmp_dist) {
+            result_dist = tmp_dist;
+            result = ver_index[1];
+        }
+
+        tmp_index = ver_index[2];
+        tmp_dist = Vector3.Distance(p_vertices[tmp_index], comp_pos);
+        if (result_dist > tmp_dist) {
+            result_dist = tmp_dist;
+            result = ver_index[2];
+        }
+
+        return result;
+    }
 
 } 
